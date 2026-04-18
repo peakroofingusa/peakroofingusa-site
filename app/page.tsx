@@ -34,8 +34,15 @@ export default function Home() {
       });
     }
 
-    // Simulate submission (replace with actual webhook)
-    await new Promise((resolve) => setTimeout(resolve, 800));
+try {
+      await fetch('https://formspree.io/f/mpqkrqvn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.error('Form submit error:', err);
+    }
     setSubmitted(true);
     setLoading(false);
   };
